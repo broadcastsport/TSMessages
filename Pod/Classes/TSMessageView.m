@@ -301,7 +301,12 @@ canBeDismissedByUser:(BOOL)dismissingEnabled
         // Set up content label (if set)
         if ([subtitle length])
         {
-            _contentLabel = [[UILabel alloc] init];
+            CGRect screenRect = [[UIScreen mainScreen] bounds];
+            CGFloat screenWidth = screenRect.size.width;
+            
+            _contentLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 30.0, screenWidth, 40.0)];
+            [_contentLabel setTextAlignment:NSTextAlignmentCenter];
+            
             [self.contentLabel setText:subtitle];
 
             UIColor *contentTextColor = [UIColor colorWithHexString:[current valueForKey:@"contentTextColor"]];
@@ -459,13 +464,10 @@ canBeDismissedByUser:(BOOL)dismissingEnabled
 
     if ([self.subtitle length])
     {
-        self.contentLabel.frame = CGRectMake(self.textSpaceLeft,
-                                             self.titleLabel.frame.origin.y + self.titleLabel.frame.size.height + 5.0,
-                                             screenWidth - padding - self.textSpaceLeft - self.textSpaceRight,
-                                             0.0);
-        [self.contentLabel sizeToFit];
-
-        currentHeight = self.contentLabel.frame.origin.y + self.contentLabel.frame.size.height;
+        CGRect contentFrame = self.contentLabel.frame;
+        contentFrame.origin.y = 50.0f;
+        self.contentLabel.frame = contentFrame;
+        currentHeight = 67.0f;
     }
     else
     {

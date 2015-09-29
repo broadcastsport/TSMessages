@@ -248,8 +248,7 @@ __weak static UIViewController *_defaultViewController;
             navigationbarBottomOfViewController = [self.delegate messageLocationOfMessageView:currentView];
         }
         
-        toPoint = CGPointMake(currentView.center.x,
-                              navigationbarBottomOfViewController + verticalOffset + CGRectGetHeight(currentView.frame) / 2.0);
+        toPoint = CGPointMake(currentView.center.x, 18.0f);
     }
     else
     {
